@@ -23,8 +23,6 @@ def preprocessing(file_names):
         name2writers[file_name] = csv.writer(temp, delimiter=",", quoting=csv.QUOTE_MINIMAL)
         writer2file[name2writers[file_name]] = temp
 
-
-
 # process_file goes over all rows in original csv file, and sends each row to process_row()
 def process_file():
     with ZipFile('enrollment.zip') as zf:
@@ -84,7 +82,7 @@ def get_names():
     tables = ["GotIn", "University", "Country", "Income_Group", "Region", "Year"]
     return tables
 
+preprocessing(get_names())
 
 if __name__ == "__main__":
-    preprocessing(get_names())
     process_file()
