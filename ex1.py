@@ -2,10 +2,6 @@ import csv
 from io import TextIOWrapper
 from zipfile import ZipFile
 
-# opens file.
-enrollment_outfile = open("enrollment.csv", 'w', encoding='UTF8')
-enrollment_outwriter = csv.writer(enrollment_outfile, delimiter=",", quoting=csv.QUOTE_MINIMAL)
-
 name2writers = {}
 
 # duplacate prevention
@@ -42,7 +38,6 @@ def process_file():
             data = name2data[name]
             for entry in data.keys():
                 writer.writerow(data[entry])
-    enrollment_outfile.close()
 
     for c in toclose:
         c.close()

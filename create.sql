@@ -37,7 +37,7 @@ create table University(
     foreign key (yrclosed) references Year(year)
 );
 
-create table gotIn(
+create table GotIn(
     year integer,
     foreign key (year) references Year(year),
     iau_id1 integer,
