@@ -87,7 +87,7 @@ def process_row(row):
 
 
 def get_names():
-    tables = ["University", "Region", "Income_Group", "Country", "GotIn", "Year"]
+    tables = ["Region", "Income_Group", "Year", "Country", "GotIn", "University"]
     return tables
 
 
