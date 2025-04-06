@@ -7,13 +7,15 @@ name2writers = {}
 # duplacate prevention
 countries = {}
 years = {}
+
+years = {"year": ["year"]}
 universities = {}
 gotin = {}
 incomegroups = {}
 regions = {}
 
 name2data = {"Country": countries, "Year": years, "University": universities, "GotIn": gotin,
-             "Income_Group": incomegroups, "Region" : regions}
+             "IncomeGroup": incomegroups, "Region": regions}
 writer2file = {}
 
 
@@ -22,6 +24,7 @@ def preprocessing(file_names):
         temp = open(file_name + ".csv", 'w', encoding='UTF8')
         name2writers[file_name] = csv.writer(temp, delimiter=",", quoting=csv.QUOTE_MINIMAL)
         writer2file[name2writers[file_name]] = temp
+
 
 # process_file goes over all rows in original csv file, and sends each row to process_row()
 def process_file():
@@ -57,11 +60,14 @@ def process_row(row):
     orig_name = row[6]
     foundedyr = row[7]
 
-    years[foundedyr] = [foundedyr]
+    # check if foundeyr is integer
+
+    if (foundedyr.isnumeric()):
+        years[foundedyr] = [foundedyr]
 
     yrclosed = row[8]
-
-    years[yrclosed] = [yrclosed]
+    if (yrclosed.isnumeric()):
+        years[yrclosed] = [yrclosed]
 
     private01 = row[9]
     latitude = row[10]
@@ -79,8 +85,9 @@ def process_row(row):
 
 
 def get_names():
-    tables = ["GotIn", "University", "Country", "Income_Group", "Region", "Year"]
+    tables = ["IncomeGroup", "Region", "Year", "Country", "University", "GotIn"]
     return tables
+
 
 preprocessing(get_names())
 

@@ -20,9 +20,9 @@ create table Year(
 );
 
 create table University(
-    iau_id1 integer primary key,
-    eng_name varchar(50) not null,
-    orig_name varchar(50) not null,
+    iau_id1 varchar(50) primary key,
+    eng_name varchar not null,
+    orig_name varchar not null,
     private01 bit not null,
     latitude float,
     longitude float,
@@ -40,7 +40,7 @@ create table University(
 create table GotIn(
     year integer,
     foreign key (year) references Year(year),
-    iau_id1 integer,
+    iau_id1 varchar(50),
     foreign key (iau_id1) references University(iau_id1),
     student5_est integer
 );
