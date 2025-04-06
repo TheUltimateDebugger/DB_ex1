@@ -14,14 +14,14 @@ regions = {}
 
 name2data = {"Country": countries, "Year": years, "University": universities, "GotIn": gotin,
              "Income_Group": incomegroups, "Region" : regions}
+writer2file = {}
 
-toclose = []
 
 def preprocessing(file_names):
     for file_name in file_names:
         temp = open(file_name + ".csv", 'w', encoding='UTF8')
         name2writers[file_name] = csv.writer(temp, delimiter=",", quoting=csv.QUOTE_MINIMAL)
-        toclose.append(temp)
+        writer2file[name2writers[file_name]] = temp
 
 
 
@@ -38,9 +38,8 @@ def process_file():
             data = name2data[name]
             for entry in data.keys():
                 writer.writerow(data[entry])
+            writer2file[writer].close()
 
-    for c in toclose:
-        c.close()
 
 # return the list of all tables
 
@@ -82,7 +81,7 @@ def process_row(row):
 
 
 def get_names():
-    tables = ["Region", "Income_Group", "Year", "Country", "GotIn", "University"]
+    tables = ["GotIn", "University", "Country", "Income_Group", "Region", "Year"]
     return tables
 
 
